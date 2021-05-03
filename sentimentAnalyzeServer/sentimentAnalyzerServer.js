@@ -31,8 +31,32 @@ app.get("/",(req,res)=>{
   });
 
 app.get("/url/emotion", (req,res) => {
+    const analyzeParams = {
+        'url': req.query.url,
+        'features': {
+            'entities': {
+            'emotion': true,
+            'sentiment': true,
+            'limit': 2,
+            },
+            'keywords': {
+            'emotion': true,
+            'sentiment': true,
+            'limit': 2,
+            },
+        },
+    };
+    let result;
 
-    return res.send({"happy":"90","sad":"10"});
+    getNLUInstance().analyze(analyzeParams).then(analysisResults => {
+        result = JSON.stringify(analysisResults, null, 2);
+        console.log(result);
+    })
+    .catch(err => {
+        console.log('error:', err);
+    });
+
+    return res.send(result);
 });
 
 app.get("/url/sentiment", (req,res) => {
