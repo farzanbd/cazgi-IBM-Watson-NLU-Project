@@ -46,7 +46,7 @@ app.get("/url/emotion", (req,res) => {
     };
 
     getNLUInstance().analyze(analyzeParams).then(analysisResults => {
-        res.send(JSON.stringify(analysisResults, null, 2));
+        res.send(JSON.stringify(analysisResults.result.keywords, null, 2));
     })
     .catch(err => {
         res.send(err);
@@ -69,7 +69,7 @@ app.get("/url/sentiment", (req,res) => {
     };
 
     getNLUInstance().analyze(analyzeParams).then(analysisResults => {
-        res.send(JSON.stringify(analysisResults, null, 2));
+        res.send(JSON.stringify(analysisResults.result.keywords, null, 2));
     })
     .catch(err => {
         res.send(err);
@@ -92,7 +92,7 @@ app.get("/text/emotion", (req,res) => {
     };
 
     getNLUInstance().analyze(analyzeParams).then(analysisResults => {
-        res.send(JSON.stringify(analysisResults, null, 2));
+        res.send(JSON.stringify(analysisResults.result.keywords, null, 2));
     })
     .catch(err => {
         res.send(err);
@@ -105,17 +105,15 @@ const analyzeParams = {
         'features': {
             'entities': {
             'sentiment': true,
-            'limit': 1,
             },
             'keywords': {
             'sentiment': true,
-            'limit': 1,
             },
         },
     };
 
     getNLUInstance().analyze(analyzeParams).then(analysisResults => {
-        res.send(JSON.stringify(analysisResults, null, 2));
+        res.send(JSON.stringify(analysisResults.result.keywords, null, 2));
     })
     .catch(err => {
         res.send(err);

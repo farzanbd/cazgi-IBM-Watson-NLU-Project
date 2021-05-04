@@ -74,6 +74,7 @@ class App extends React.Component {
 
     ret.then((response)=>{
       this.setState({sentimentOutput:<EmotionTable emotions={response.data}/>});
+      console.log(response.data);
   });
   }
   
