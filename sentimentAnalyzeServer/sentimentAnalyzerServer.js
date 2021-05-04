@@ -105,9 +105,11 @@ const analyzeParams = {
         'features': {
             'entities': {
             'sentiment': true,
+            'limit': 1,
             },
             'keywords': {
             'sentiment': true,
+            'limit': 1,
             },
         },
     };
